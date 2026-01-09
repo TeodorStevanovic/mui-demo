@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
@@ -13,7 +13,15 @@ function App() {
   };
 
   return (
-    <>
+    <Box
+      sx={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Button variant="text" onClick={incrementCounter}>
         <AddIcon />
       </Button>
@@ -21,7 +29,7 @@ function App() {
       <Button variant="text" onClick={decrementCounter}>
         <RemoveIcon />
       </Button>
-    </>
+    </Box>
   );
 }
 
