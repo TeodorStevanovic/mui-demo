@@ -9,11 +9,15 @@ import {
   DialogContent,
   DialogActions,
   TextareaAutosize,
+  List,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
 
 const App = () => {
   const [dialog, setDialog] = useState(false);
   const [newTask, setNewTask] = useState("");
+  const [tasks, setTasks] = useState([]);
 
   const handleOpen = () => {
     setDialog(true);
@@ -24,7 +28,7 @@ const App = () => {
   };
 
   const handleAddTask = () => {
-    console.log(newTask);
+    setTasks((prevTask) => [...prevTask, newTask]);
     setNewTask("");
     handleClose();
   };
@@ -42,10 +46,22 @@ const App = () => {
       <CssBaseline />
       <Typography variant="h3">My To Do List</Typography>
       <Button onClick={handleOpen}>Add</Button>
+      <List>
+        {tasks.map((task, index) => (
+          <ListItem key={index}>
+            <ListItemText primary={task} />
+          </ListItem>
+        ))}
+      </List>
       <Dialog open={dialog} onClose={handleClose}>
         <DialogTitle>Add New Task</DialogTitle>
         <DialogContent>
-          <TextareaAutosize maxRows={20} value={newTask} style={{width: "100%"}} onChange={(e) => setNewTask(e.target.value)}/>
+          <TextareaAutosize
+            maxRows={20}
+            value={newTask}
+            style={{ width: "100%" }}
+            onChange={(e) => setNewTask(e.target.value)}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
