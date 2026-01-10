@@ -1,36 +1,20 @@
 import React, { useState } from "react";
-import { Button, Box } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
+import { CssBaseline, Box, Typography } from "@mui/material";
 
-function App() {
-  const [count, setCount] = useState(0);
-  const incrementCounter = () => {
-    setCount(count + 1);
-  };
-  const decrementCounter = () => {
-    setCount(count - 1);
-  };
-
+const App = () => {
   return (
     <Box
       sx={{
-        height: "100vh",
         display: "flex",
-        flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        height: "100vh",
       }}
     >
-      <Button variant="text" onClick={incrementCounter}>
-        <AddIcon />
-      </Button>
-      <p>{count}</p>
-      <Button variant="text" onClick={decrementCounter}>
-        <RemoveIcon />
-      </Button>
+      <CssBaseline />
+      <Typography variant="h3">My To Do List</Typography>
     </Box>
   );
-}
+};
 
 export default App;
