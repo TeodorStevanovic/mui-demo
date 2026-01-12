@@ -1,98 +1,68 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  CssBaseline,
   Box,
+  AppBar,
   Typography,
-  Dialog,
-  Button,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  TextareaAutosize,
-  List,
-  ListItem,
-  ListItemText,
+  Toolbar,
+  IconButton,
+  CssBaseline,
+  Grid,
+  Card,
+  CardHeader,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { useForm, Controller } from "react-hook-form";
+import MenuIcon from "@mui/icons-material/Menu";
+import PersonIcon from "@mui/icons-material/Person";
 
 const App = () => {
-  const [dialog, setDialog] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  const [users, setUsers] = useState([]);
 
-  const { control, handleSubmit, reset } = useForm({
-    defaultValues: {
-      task: "",
-    },
-  });
+  console.log(users);
 
-  const handleOpen = () => {
-    setDialog(true);
-  };
-
-  const handleClose = () => {
-    setDialog(false);
-  };
-
-  const handleAddTask = (data) => {
-    const newTask = {
-      id: Date.now(),
-      task: data.task,
-    };
-
-    setTasks((prevTask) => [...prevTask, newTask]);
-    reset();
-    handleClose();
-  };
-
-  const removeTask = (id) => {
-    setTasks((tasks) => tasks.filter((task) => task.id !== id));
-  };
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => setUsers(data))
+      .catch();
+  }, []);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        height: "100vh",
-      }}
-    >
+    <>
       <CssBaseline />
-      <Typography variant="h3">My To Do List</Typography>
-      <Button onClick={handleOpen}>Add</Button>
-      <List>
-        {tasks.map((task) => (
-          <ListItem key={task.id}>
-            <ListItemText primary={task.task} />
-            <Button variant="text" onClick={() => removeTask(task.id)}>
-              <DeleteIcon />
-            </Button>
-          </ListItem>
-        ))}
-      </List>
-      <Dialog open={dialog} onClose={handleClose}>
-        <DialogTitle>Add New Task</DialogTitle>
-        <DialogContent>
-          <Controller
-            name="task"
-            control={control}
-            render={({ field }) => (
-              <TextareaAutosize
-                {...field}
-                maxRows={4}
-                style={{ width: "100%" }}
-              />
-            )}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSubmit(handleAddTask)}>Add</Button>
-        </DialogActions>
-      </Dialog>
-    </Box>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" aria-label="menu" sx={{ mr: 2 }}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="div">
+            Users Profile
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Box sx={{padding: 1}}>
+        <Grid container spacing={2}>
+          {users.map((user) => (
+            <Grid item xs={12} sm={6} md={4} key={user.id}>
+              <Card
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundColor: "#1976d2",
+                  borderRadius: 2,
+                }}
+              >
+                <PersonIcon sx={{ width: 50, height: 50 }} />
+                <CardHeader
+                  title={user.name}
+                  subheader={user.username}
+                  sx={{ width: 350, background: "#fff" }}
+                />
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </>
   );
 };
 
