@@ -13,6 +13,7 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useForm, Controller } from "react-hook-form";
 
 const App = () => {
@@ -34,9 +35,18 @@ const App = () => {
   };
 
   const handleAddTask = (data) => {
-    setTasks((prevTask) => [...prevTask, data.task]);
+    const newTask = {
+      id: Date.now(),
+      task: data.task,
+    };
+
+    setTasks((prevTask) => [...prevTask, newTask]);
     reset();
     handleClose();
+  };
+
+  const removeTask = (id) => {
+    setTasks((tasks) => tasks.filter((task) => task.id !== id));
   };
 
   return (
@@ -53,9 +63,12 @@ const App = () => {
       <Typography variant="h3">My To Do List</Typography>
       <Button onClick={handleOpen}>Add</Button>
       <List>
-        {tasks.map((task, index) => (
-          <ListItem key={index}>
-            <ListItemText primary={task} />
+        {tasks.map((task) => (
+          <ListItem key={task.id}>
+            <ListItemText primary={task.task} />
+            <Button variant="text" onClick={() => removeTask(task.id)}>
+              <DeleteIcon />
+            </Button>
           </ListItem>
         ))}
       </List>
