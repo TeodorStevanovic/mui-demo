@@ -14,6 +14,8 @@ import {
   DialogTitle,
   DialogContent,
   TextField,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
@@ -21,16 +23,25 @@ import PersonIcon from "@mui/icons-material/Person";
 const App = () => {
   const [users, setUsers] = useState([]);
   const [selectUser, setSelectUser] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleOpen = (clickedUser) => {
+  const handleOpenDialog = (clickedUser) => {
     setSelectUser(clickedUser);
     setOpenDialog(true);
   };
 
   const handleClose = () => {
     setOpenDialog(false);
+  };
+
+  const handleOpenMenu = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
   };
 
   const filteredUsers = users.filter(
@@ -51,9 +62,22 @@ const App = () => {
       <CssBaseline />
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" aria-label="menu" sx={{ mr: 2 }}>
+          <IconButton
+            edge="start"
+            aria-label="menu"
+            onClick={handleOpenMenu}
+            sx={{ mr: 2 }}
+          >
             <MenuIcon />
           </IconButton>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleCloseMenu}
+          >
+            <MenuItem onClick={handleCloseMenu}>Home</MenuItem>
+            <MenuItem onClick={handleCloseMenu}>Settings</MenuItem>
+          </Menu>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Users Profile
           </Typography>
@@ -94,7 +118,7 @@ const App = () => {
                   />
                   <Button
                     variant="text"
-                    onClick={() => handleOpen(user)}
+                    onClick={() => handleOpenDialog(user)}
                     sx={{ color: "#fff" }}
                   >
                     Learn more
