@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   Box,
-  AppBar,
   Typography,
-  Toolbar,
-  IconButton,
   CssBaseline,
   Grid,
   Card,
@@ -13,12 +10,9 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  TextField,
-  Menu,
-  MenuItem,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
+import Header from "./components/Header";
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -60,39 +54,13 @@ const App = () => {
   return (
     <>
       <CssBaseline />
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            aria-label="menu"
-            onClick={handleOpenMenu}
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleCloseMenu}
-          >
-            <MenuItem onClick={handleCloseMenu}>Home</MenuItem>
-            <MenuItem onClick={handleCloseMenu}>Settings</MenuItem>
-          </Menu>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Users Profile
-          </Typography>
-          <Box>
-            <TextField
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              variant="outlined"
-              size="small"
-              placeholder="Search"
-              sx={{ backgroundColor: "white", borderRadius: 1 }}
-            />
-          </Box>
-        </Toolbar>
-      </AppBar>
+      <Header
+        anchorEl={anchorEl}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        handleOpenMenu={handleOpenMenu}
+        handleCloseMenu={handleCloseMenu}
+      />
       <Box sx={{ padding: 1 }}>
         <Grid container spacing={10}>
           {filteredUsers.length === 0 ? (
