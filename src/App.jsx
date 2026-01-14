@@ -4,15 +4,10 @@ import {
   Typography,
   CssBaseline,
   Grid,
-  Card,
-  CardHeader,
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
 } from "@mui/material";
 import Header from "./components/Header";
 import UserCard from "./components/UserCard";
+import UserDialog from "./components/UserDialog";
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -67,24 +62,19 @@ const App = () => {
             <Typography>User Not Found</Typography>
           ) : (
             filteredUsers.map((user) => (
-              <UserCard key={user.id} user={user} handleOpenDialog={handleOpenDialog} />
+              <UserCard
+                key={user.id}
+                user={user}
+                handleOpenDialog={handleOpenDialog}
+              />
             ))
           )}
         </Grid>
-        <Dialog open={openDialog} onClose={handleClose}>
-          <DialogTitle>About user:</DialogTitle>
-          <DialogContent
-            sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
-          >
-            <Typography> E-mail: {selectUser?.email} </Typography>
-            <Typography>Phone Number: {selectUser?.phone} </Typography>
-            <Typography>
-              Address: {selectUser?.address.street} / {selectUser?.address.city}
-            </Typography>
-            <Typography>Website: {selectUser?.website}</Typography>
-            <Typography>Company: {selectUser?.company.name}</Typography>
-          </DialogContent>
-        </Dialog>
+        <UserDialog
+          openDialog={openDialog}
+          handleClose={handleClose}
+          selectUser={selectUser}
+        />
       </Box>
     </>
   );
