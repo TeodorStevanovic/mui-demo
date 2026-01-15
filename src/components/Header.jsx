@@ -10,6 +10,7 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({
   anchorEl,
@@ -18,6 +19,8 @@ const Header = ({
   searchTerm,
   setSearchTerm,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -34,8 +37,22 @@ const Header = ({
           open={Boolean(anchorEl)}
           onClose={handleCloseMenu}
         >
-          <MenuItem onClick={handleCloseMenu}>Home</MenuItem>
-          <MenuItem>Users</MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate("/");
+              handleCloseMenu();
+            }}
+          >
+            Home
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate("/users");
+              handleCloseMenu();
+            }}
+          >
+            Users
+          </MenuItem>
           <MenuItem onClick={handleCloseMenu}>Settings</MenuItem>
         </Menu>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

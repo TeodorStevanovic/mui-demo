@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import UserCard from "../components/UserCard";
 import UserDialog from "../components/UserDialog";
 
-const User = ({searchTerm = ""}) => {
+const User = ({ searchTerm = "" }) => {
   const [users, setUsers] = useState([]);
   const [selectUser, setSelectUser] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
@@ -31,7 +31,7 @@ const User = ({searchTerm = ""}) => {
   );
 
   return (
-    <>
+    <Box sx={{ padding: 2 }}>
       <Grid container spacing={10}>
         {filteredUsers.length === 0 ? (
           <Typography>User Not Found</Typography>
@@ -45,8 +45,12 @@ const User = ({searchTerm = ""}) => {
           ))
         )}
       </Grid>
-      <UserDialog openDialog={openDialog} handleClose={handleClose} selectUser={selectUser} />
-    </>
+      <UserDialog
+        openDialog={openDialog}
+        handleClose={handleClose}
+        selectUser={selectUser}
+      />
+    </Box>
   );
 };
 
