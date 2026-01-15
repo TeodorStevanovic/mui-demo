@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
 import UserCard from "../components/UserCard";
+import UserDialog from "../components/UserDialog";
 
-const User = () => {
+const User = ({searchTerm}) => {
   const [users, setUsers] = useState([]);
   const [selectUser, setSelectUser] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [opneDialog, setOpenDialog] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -31,19 +31,22 @@ const User = () => {
   );
 
   return (
-    <Grid container spacing={10}>
-      {filteredUsers.length === 0 ? (
-        <Typography>User Not Found</Typography>
-      ) : (
-        filteredUsers.map((user) => (
-          <UserCard
-            key={user.id}
-            user={user}
-            handleOpenDialog={handleOpenDialog}
-          />
-        ))
-      )}
-    </Grid>
+    <>
+      <Grid container spacing={10}>
+        {filteredUsers.length === 0 ? (
+          <Typography>User Not Found</Typography>
+        ) : (
+          filteredUsers.map((user) => (
+            <UserCard
+              key={user.id}
+              user={user}
+              handleOpenDialog={handleOpenDialog}
+            />
+          ))
+        )}
+      </Grid>
+      <UserDialog openDialog={openDialog} handleClose={handleClose} selectUser={selectUser} />
+    </>
   );
 };
 

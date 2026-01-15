@@ -5,6 +5,7 @@ import User from "./pages/User";
 
 const App = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleOpenMenu = (e) => {
     setAnchorEl(e.currentTarget);
@@ -21,8 +22,10 @@ const App = () => {
         anchorEl={anchorEl}
         handleOpenMenu={handleOpenMenu}
         handleCloseMenu={handleCloseMenu}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
       />
-      <User />
+      <User searchTerm={searchTerm} />
     </>
   );
 };
