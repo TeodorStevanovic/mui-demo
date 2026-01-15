@@ -35,6 +35,7 @@ const Header = ({
           onClose={handleCloseMenu}
         >
           <MenuItem onClick={handleCloseMenu}>Home</MenuItem>
+          <MenuItem>Users</MenuItem>
           <MenuItem onClick={handleCloseMenu}>Settings</MenuItem>
         </Menu>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

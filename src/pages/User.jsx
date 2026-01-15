@@ -3,7 +3,7 @@ import { Grid, Typography } from "@mui/material";
 import UserCard from "../components/UserCard";
 import UserDialog from "../components/UserDialog";
 
-const User = ({searchTerm}) => {
+const User = ({searchTerm = ""}) => {
   const [users, setUsers] = useState([]);
   const [selectUser, setSelectUser] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);

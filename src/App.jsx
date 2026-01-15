@@ -1,33 +1,22 @@
 import React, { useState } from "react";
-import { CssBaseline } from "@mui/material";
-import Header from "./components/Header";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import User from "./pages/User";
+import Home from "./pages/Home";
+import Layout from "./Layout";
 
 const App = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { index: true , element: <Home /> },
+        { path: "users", element: <User /> },
+      ],
+    },
+  ]);
 
-  const handleOpenMenu = (e) => {
-    setAnchorEl(e.currentTarget);
-  };
-
-  const handleCloseMenu = () => {
-    setAnchorEl(null);
-  };
-
-  return (
-    <>
-      <CssBaseline />
-      <Header
-        anchorEl={anchorEl}
-        handleOpenMenu={handleOpenMenu}
-        handleCloseMenu={handleCloseMenu}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-      />
-      <User searchTerm={searchTerm} />
-    </>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
