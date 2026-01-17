@@ -17,7 +17,7 @@ const Layout = () => {
 
   return (
     <>
-      <CssBaseline/>
+      <CssBaseline />
       <Header
         anchorEl={anchorEl}
         handleOpenMenu={handleOpenMenu}
@@ -25,7 +25,7 @@ const Layout = () => {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
       />
-      <Outlet />
+      <Outlet context={{searchTerm}} />
     </>
   );
 };

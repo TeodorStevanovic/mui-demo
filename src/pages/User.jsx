@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Box, Grid, Typography } from "@mui/material";
+import { useOutletContext } from "react-router-dom";
 import UserCard from "../components/UserCard";
 import UserDialog from "../components/UserDialog";
 
-const User = ({ searchTerm = "" }) => {
+const User = () => {
   const [users, setUsers] = useState([]);
   const [selectUser, setSelectUser] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
+
+  const {searchTerm} = useOutletContext();
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
