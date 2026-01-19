@@ -53,7 +53,14 @@ const Header = ({
           >
             Users
           </MenuItem>
-          <MenuItem onClick={handleCloseMenu}>Settings</MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate("/settings");
+              handleCloseMenu();
+            }}
+          >
+            Settings
+          </MenuItem>
         </Menu>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Users Profile

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import User from "./pages/User";
 import Home from "./pages/Home";
+import Settings from "./pages/Settings";
 import Layout from "./Layout";
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
       children: [
         { index: true, element: <Home /> },
         { path: "users", element: <User /> },
+        { path: "settings", element: <Settings /> },
       ],
     },
   ]);
