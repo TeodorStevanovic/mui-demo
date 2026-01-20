@@ -1,10 +1,19 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Switch, Typography } from "@mui/material";
 import React from "react";
 
 const Settings = () => {
   return (
-    <Box>
-      <Typography variant="h3">Settings Page</Typography>
+    <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        margin: "10px",
+      }}
+    >
+      <Typography variant="h6">Show Username:</Typography>
+      <Switch checked={checked} onChange={() => {}} />
     </Box>
   );
 };
