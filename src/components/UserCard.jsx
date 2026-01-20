@@ -1,8 +1,9 @@
 import React from "react";
 import { Grid, Card, CardHeader, Button } from "@mui/material";
+import { useOutletContext } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 
-const UserCard = ({ handleOpenDialog, user }) => {
+const UserCard = ({ handleOpenDialog, user, showUsername }) => {
   return (
     <Grid item xs={12} sm={6} md={4} key={user.id}>
       <Card
@@ -18,7 +19,7 @@ const UserCard = ({ handleOpenDialog, user }) => {
         <PersonIcon sx={{ width: 50, height: 50 }} />
         <CardHeader
           title={user.name}
-          subheader={user.username}
+          subheader={showUsername ? user.username : ""}
           sx={{ width: 350, backgroundColor: "#fff" }}
         />
         <Button

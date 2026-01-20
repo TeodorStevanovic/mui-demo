@@ -9,7 +9,7 @@ const User = () => {
   const [selectUser, setSelectUser] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
 
-  const {searchTerm} = useOutletContext();
+  const {searchTerm, showUsername} = useOutletContext();
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -44,6 +44,7 @@ const User = () => {
               key={user.id}
               user={user}
               handleOpenDialog={handleOpenDialog}
+              showUsername={showUsername}
             />
           ))
         )}
