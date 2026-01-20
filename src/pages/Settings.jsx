@@ -3,7 +3,8 @@ import { useOutletContext } from "react-router-dom";
 import React from "react";
 
 const Settings = () => {
-  const { showUsername, setShowUsername } = useOutletContext();
+  const { showUsername, setShowUsername, showUserEmail, setShowUserEmail } =
+    useOutletContext();
   return (
     <Box
       sx={{
@@ -18,6 +19,12 @@ const Settings = () => {
       <Switch
         checked={showUsername}
         onChange={() => setShowUsername((prev) => !prev)}
+      />
+
+      <Typography variant="h6">Show Users Email:</Typography>
+      <Switch
+        checked={showUserEmail}
+        onChange={() => setShowUserEmail((prev) => !prev)}
       />
     </Box>
   );

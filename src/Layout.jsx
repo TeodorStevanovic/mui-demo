@@ -7,6 +7,7 @@ const Layout = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [showUsername, setShowUsername] = useState(true);
+  const [showUserEmail, setShowUserEmail] = useState(true);
 
   const handleOpenMenu = (e) => {
     setAnchorEl(e.currentTarget);
@@ -26,7 +27,15 @@ const Layout = () => {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
       />
-      <Outlet context={{searchTerm, showUsername, setShowUsername}} />
+      <Outlet
+        context={{
+          searchTerm,
+          showUsername,
+          setShowUsername,
+          showUserEmail,
+          setShowUserEmail,
+        }}
+      />
     </>
   );
 };
