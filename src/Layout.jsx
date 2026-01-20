@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 const Layout = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showUsername, setShowUsername] = useState(true);
 
   const handleOpenMenu = (e) => {
     setAnchorEl(e.currentTarget);
@@ -25,7 +26,7 @@ const Layout = () => {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
       />
-      <Outlet context={{searchTerm}} />
+      <Outlet context={{searchTerm, showUsername, setShowUsername}} />
     </>
   );
 };

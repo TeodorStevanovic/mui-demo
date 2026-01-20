@@ -1,7 +1,9 @@
 import { Box, Switch, Typography } from "@mui/material";
+import { useOutletContext } from "react-router-dom";
 import React from "react";
 
 const Settings = () => {
+  const { showUsername, setShowUsername } = useOutletContext();
   return (
     <Box
       sx={{
@@ -13,7 +15,10 @@ const Settings = () => {
       }}
     >
       <Typography variant="h6">Show Username:</Typography>
-      <Switch checked={checked} onChange={() => {}} />
+      <Switch
+        checked={showUsername}
+        onChange={() => setShowUsername((prev) => !prev)}
+      />
     </Box>
   );
 };
