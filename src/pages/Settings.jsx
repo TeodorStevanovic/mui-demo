@@ -26,6 +26,9 @@ const Settings = () => {
         checked={showUserEmail}
         onChange={() => setShowUserEmail((prev) => !prev)}
       />
+
+      <Typography variant="h6">Dark Mode:</Typography>
+      <Switch />
     </Box>
   );
 };
