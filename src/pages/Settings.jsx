@@ -3,8 +3,14 @@ import { useOutletContext } from "react-router-dom";
 import React from "react";
 
 const Settings = () => {
-  const { showUsername, setShowUsername, showUserEmail, setShowUserEmail } =
-    useOutletContext();
+  const {
+    showUsername,
+    setShowUsername,
+    showUserEmail,
+    setShowUserEmail,
+    mode,
+    setMode,
+  } = useOutletContext();
   return (
     <Box
       sx={{
@@ -28,7 +34,12 @@ const Settings = () => {
       />
 
       <Typography variant="h6">Dark Mode:</Typography>
-      <Switch />
+      <Switch
+        checked={mode === "dark"}
+        onChange={() =>
+          setMode((prev) => (prev === "light" ? "dark" : "light"))
+        }
+      />
     </Box>
   );
 };

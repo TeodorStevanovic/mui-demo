@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "./components/Header";
 import { CssBaseline } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {
@@ -8,6 +9,13 @@ const Layout = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showUsername, setShowUsername] = useState(true);
   const [showUserEmail, setShowUserEmail] = useState(true);
+  const [mode, setMode] = useState("light");
+
+  const theme = createTheme({
+    palette: {
+      mode,
+    },
+  });
 
   const handleOpenMenu = (e) => {
     setAnchorEl(e.currentTarget);
@@ -19,23 +27,27 @@ const Layout = () => {
 
   return (
     <>
-      <CssBaseline />
-      <Header
-        anchorEl={anchorEl}
-        handleOpenMenu={handleOpenMenu}
-        handleCloseMenu={handleCloseMenu}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-      />
-      <Outlet
-        context={{
-          searchTerm,
-          showUsername,
-          setShowUsername,
-          showUserEmail,
-          setShowUserEmail,
-        }}
-      />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Header
+          anchorEl={anchorEl}
+          handleOpenMenu={handleOpenMenu}
+          handleCloseMenu={handleCloseMenu}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
+        <Outlet
+          context={{
+            searchTerm,
+            showUsername,
+            setShowUsername,
+            showUserEmail,
+            setShowUserEmail,
+            mode,
+            setMode,
+          }}
+        />
+      </ThemeProvider>
     </>
   );
 };
