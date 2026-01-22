@@ -1,4 +1,4 @@
-import { Box, Switch, Typography, List, ListItem } from "@mui/material";
+import { Box, Switch, List, ListItem, ListItemText } from "@mui/material";
 import { useOutletContext } from "react-router-dom";
 import React from "react";
 
@@ -23,7 +23,7 @@ const Settings = () => {
     >
       <List>
         <ListItem>
-          <Typography variant="h6">Show Username:</Typography>
+          <ListItemText variant="h6">Show Username:</ListItemText>
           <Switch
             checked={showUsername}
             onChange={() => setShowUsername((prev) => !prev)}
@@ -31,7 +31,7 @@ const Settings = () => {
         </ListItem>
 
         <ListItem>
-          <Typography variant="h6">Show Users Email:</Typography>
+          <ListItemText variant="h6">Show Users Email:</ListItemText>
           <Switch
             checked={showUserEmail}
             onChange={() => setShowUserEmail((prev) => !prev)}
@@ -39,7 +39,7 @@ const Settings = () => {
         </ListItem>
 
         <ListItem>
-          <Typography variant="h6">Dark Mode:</Typography>
+          <ListItemText variant="h6">Dark Mode:</ListItemText>
           <Switch
             checked={mode === "dark"}
             onChange={() =>
