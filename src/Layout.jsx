@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -10,6 +10,14 @@ const Layout = () => {
   const [showUsername, setShowUsername] = useState(true);
   const [showUserEmail, setShowUserEmail] = useState(true);
   const [mode, setMode] = useState("light");
+
+  useEffect(() => {
+    const savedThemeMode = localStorage.getItem("mode");
+
+    if (savedThemeMode) {
+      setMode(savedThemeMode);
+    }
+  }, []);
 
   const theme = createTheme({
     palette: {

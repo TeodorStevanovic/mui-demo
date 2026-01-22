@@ -21,7 +21,7 @@ const Settings = () => {
         margin: "10px",
       }}
     >
-      <List sx={{width: "100%"}}>
+      <List sx={{ width: "100%" }}>
         <ListItem>
           <ListItemText>Show Username:</ListItemText>
           <Switch
@@ -29,7 +29,7 @@ const Settings = () => {
             onChange={() => setShowUsername((prev) => !prev)}
           />
         </ListItem>
-        <hr/>
+        <hr />
         <ListItem>
           <ListItemText>Show Users Email:</ListItemText>
           <Switch
@@ -37,17 +37,21 @@ const Settings = () => {
             onChange={() => setShowUserEmail((prev) => !prev)}
           />
         </ListItem>
-        <hr/>
+        <hr />
         <ListItem>
           <ListItemText>Dark Mode:</ListItemText>
           <Switch
             checked={mode === "dark"}
             onChange={() =>
-              setMode((prev) => (prev === "light" ? "dark" : "light"))
+              setMode((prev) => {
+                const newThemeMode = prev === "light" ? "dark" : "light";
+                localStorage.setItem("mode", newThemeMode);
+                return newThemeMode;
+              })
             }
           />
         </ListItem>
-        <hr/>
+        <hr />
       </List>
     </Box>
   );
