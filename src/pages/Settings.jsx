@@ -26,7 +26,13 @@ const Settings = () => {
           <ListItemText>Show Username:</ListItemText>
           <Switch
             checked={showUsername}
-            onChange={() => setShowUsername((prev) => !prev)}
+            onChange={() =>
+              setShowUsername((prev) => {
+                const isShowUsername = !prev;
+                localStorage.setItem("showUsername", isShowUsername);
+                return isShowUsername;
+              })
+            }
           />
         </ListItem>
         <hr />

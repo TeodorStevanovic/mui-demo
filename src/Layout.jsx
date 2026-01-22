@@ -12,6 +12,14 @@ const Layout = () => {
   const [mode, setMode] = useState("light");
 
   useEffect(() => {
+    const savedShowUsername = localStorage.getItem("showUsername");
+
+    if (savedShowUsername) {
+      setShowUsername(savedShowUsername === "true" ? true : false);
+    }
+  }, []);
+
+  useEffect(() => {
     const savedThemeMode = localStorage.getItem("mode");
 
     if (savedThemeMode) {
