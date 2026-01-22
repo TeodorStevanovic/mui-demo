@@ -21,25 +21,25 @@ const Settings = () => {
         margin: "10px",
       }}
     >
-      <List>
+      <List sx={{width: "100%"}}>
         <ListItem>
-          <ListItemText variant="h6">Show Username:</ListItemText>
+          <ListItemText>Show Username:</ListItemText>
           <Switch
             checked={showUsername}
             onChange={() => setShowUsername((prev) => !prev)}
           />
         </ListItem>
-
+        <hr/>
         <ListItem>
-          <ListItemText variant="h6">Show Users Email:</ListItemText>
+          <ListItemText>Show Users Email:</ListItemText>
           <Switch
             checked={showUserEmail}
             onChange={() => setShowUserEmail((prev) => !prev)}
           />
         </ListItem>
-
+        <hr/>
         <ListItem>
-          <ListItemText variant="h6">Dark Mode:</ListItemText>
+          <ListItemText>Dark Mode:</ListItemText>
           <Switch
             checked={mode === "dark"}
             onChange={() =>
@@ -47,6 +47,7 @@ const Settings = () => {
             }
           />
         </ListItem>
+        <hr/>
       </List>
     </Box>
   );
