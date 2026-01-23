@@ -15,7 +15,7 @@ const Layout = () => {
     const savedShowUsername = localStorage.getItem("showUsername");
 
     if (savedShowUsername) {
-      setShowUsername(savedShowUsername === "true" ? true : false);
+      setShowUsername(savedShowUsername === "true");
     }
   }, []);
 
@@ -24,6 +24,14 @@ const Layout = () => {
 
     if (savedThemeMode) {
       setMode(savedThemeMode);
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedShowUserEmail = localStorage.getItem("showUserEmail");
+
+    if (savedShowUserEmail) {
+      setShowUserEmail(savedShowUserEmail === "true");
     }
   }, []);
 

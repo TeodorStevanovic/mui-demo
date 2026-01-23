@@ -40,7 +40,13 @@ const Settings = () => {
           <ListItemText>Show Users Email:</ListItemText>
           <Switch
             checked={showUserEmail}
-            onChange={() => setShowUserEmail((prev) => !prev)}
+            onChange={() =>
+              setShowUserEmail((prev) => {
+                const isShowUserEmail = !prev;
+                localStorage.setItem("showUserEmail", isShowUserEmail);
+                return isShowUserEmail;
+              })
+            }
           />
         </ListItem>
         <hr />
