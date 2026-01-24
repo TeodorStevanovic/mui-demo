@@ -59,6 +59,7 @@ const Layout = () => {
           handleCloseMenu={handleCloseMenu}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
+          mode={mode}
         />
         <Outlet
           context={{

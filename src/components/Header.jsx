@@ -18,6 +18,7 @@ const Header = ({
   handleCloseMenu,
   searchTerm,
   setSearchTerm,
+  mode,
 }) => {
   const navigate = useNavigate();
 
@@ -72,7 +73,11 @@ const Header = ({
             variant="outlined"
             size="small"
             placeholder="Search"
-            sx={{ backgroundColor: "white", borderRadius: 1 }}
+            sx={{
+              backgroundColor: mode === "dark" ? "#fff" : "#000",
+              borderRadius: 1,
+            }}
+            InputProps={{ sx: { color: mode === "dark" ? "#000" : "#fff" } }}
           />
         </Box>
       </Toolbar>
